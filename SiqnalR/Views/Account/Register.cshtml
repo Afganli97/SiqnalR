@@ -5,43 +5,38 @@
 
     <!--====== Register Part Start ======-->
 
-    <section class="register-area pt-10">
-        <div class="container-fluid custom-container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="login-register-wrapper mt-30">
-                        <h4 class="allup-title">Creat New Account</h4>
-                        <p class="mt-10">Already have an account? <a asp-action="login">Log in instead!</a></p>
-                        <form method="post">
-                            <div class="single-form">
-                                <input asp-for="Email" placeholder="Email Address">
-                                <span asp-validation-for="Email"></span>
-                            </div>
-                            <div class="single-form">
-                                <input asp-for="UserName" placeholder="Username">
-                                <span asp-validation-for="UserName"></span>
-                            </div>
-                            <div class="single-form">
-                                <input asp-for="Password" placeholder="Password">
-                                <span asp-validation-for="Password"></span>
-                            </div>
-                            <div class="single-form">
-                                <input asp-for="RepeatPassword" placeholder="Repeat Password">
-                                <span asp-validation-for="RepeatPassword"></span>
-                            </div>
-                            <div class="custom-checkbox mt-30">
-                                <input asp-for="IsSubscribed" id="account-2">
-                                <label for="account-2"></label>
-                                <p>Sign Up For Our Newsletter <br> Subscribe To Our Newsletters Now And Stay Up-To-Date With New Collections, The Latest Lookbooks And Exclusive Offers..</p>
-                            </div>
-                            <div class="single-form">
-                                <button type="submit" class="main-btn main-btn-2">Register</button>
-                            </div>
-                        </form>                        
-                    </div>
-                </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4">
+                <main class="form-signin w-100 m-auto">
+                    <form method="post">
+                        <h1 class="h3 mb-3 fw-normal">Please register</h1>
+                        <div class="">
+                            <label asp-for="Username">Username</label>
+                            <input asp-for="Username" class="form-control" placeholder="Username">
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                        <div class="">
+                            <label asp-for="Email">Email address</label>
+                            <input asp-for="Email" class="form-control" placeholder="name@example.com">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-item">
+                            <label asp-for="Password">Password</label>
+                            <input asp-for="Password" class="form-control" placeholder="Password">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="">
+                            <label asp-for="RepeatPassword">Repeat Password</label>
+                            <input asp-for="RepeatPassword" class="form-control" placeholder="Repeat Password">
+                            <span asp-validation-for="RepeatPassword" class="text-danger"></span>
+                        </div>
+                        <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+                        <p class="mt-5 mb-3 text-muted">© 2017–2022</p>
+                    </form>
+                </main>
             </div>
         </div>
-    </section>
+    </div>
     
     <!--====== Register Part Ends ======-->

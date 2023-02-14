@@ -6,28 +6,28 @@
     <div class="row">
         <div class="inputForm col-lg-6">
             <input type="text" id="message" placeholder="Message">
+            <input type="text" id="user" hidden value="@User.Identity.Name">
             <input type="button" id="sendBtn" class="btn btn-primary" value="Send">
+        </div>
+        <div class="col-lg-4">
+            <div class="list-group mx-0 w-auto">
+                @foreach (var item in ViewBag.Users)
+                {
+                    <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0 userCheck" type="checkbox">
+                    <input type="text" hidden value="@item.Id">
+                    <span>
+                        @item.UserName
+                    </span>
+                </label>
+                }
+            </div>
         </div>
     </div>
     <div id="chatroom">
 
     </div>
 </div>
-<script src="~/lib/siqnalR/signalr.min.js"></script>
-<script>
-    const connection = new siqnalR.HubConnectionBuilder().withUrl("/chat").build();
 
-    connection.on("Send", function(message){
-        let messElem = document.createElement("p");
-        messElem.appendChild(document.createTextNode(message));
-        let firstElem = document.getElementById("chatroom").firstChild;
-        document.getElementById("chatroom").insertBefore(messElem, firstElem);
-    });
-
-    document.getElementById("sendBtn").addEventListener("click", function(ev){
-        let message = document.getElementById("message").value;
-        connection.invoke("Send", message);
-    });
-
-    connection.start();
-</script>
+    <script src="~/lib/siqnalR/signalr.js"></script>
+    <script src="~/lib/siqnalR/signalr.min.js"></script>

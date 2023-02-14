@@ -1,22 +1,28 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SiqnalR.Models;
 
 namespace SiqnalR.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly UserManager<AppUser> _userManager;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(UserManager<AppUser> userManager)
     {
-        _logger = logger;
+        _userManager = userManager;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
+        ViewBag.Users = await _userManager.Users.ToListAsync();
         return View();
     }
 
+    
+
 }
 
+ 

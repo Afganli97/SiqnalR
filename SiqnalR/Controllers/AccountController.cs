@@ -30,7 +30,7 @@ namespace SiqnalR.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginVM login, string ReturnUrl)
+        public async Task<IActionResult> Login(LoginVM login)
         {   
             if(!ModelState.IsValid) return View();
 
@@ -56,10 +56,6 @@ namespace SiqnalR.Controllers
 
             await _signInManager.SignInAsync(user, login.RememberMe);
 
-            if (ReturnUrl != null)
-            {
-                return Redirect(ReturnUrl);
-            }
             
             return RedirectToAction("index", "home");
         }
@@ -83,7 +79,7 @@ namespace SiqnalR.Controllers
 
             AppUser user = new AppUser()
             {
-                UserName = register.UserName,
+                UserName = register.Username,
                 Email = register.Email
             };
 

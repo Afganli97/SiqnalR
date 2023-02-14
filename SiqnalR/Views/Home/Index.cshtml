@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="inputForm col-lg-6">
+            <input type="text" id="message" placeholder="Message">
+            <input type="button" id="sendBtn" class="btn btn-primary" value="Send">
+        </div>
+    </div>
+    <div id="chatroom">
+
+    </div>
+</div>
+<script src="~/lib/siqnalR/signalr.min.js"></script>
+<script>
+    const connection = new siqnalR.HubConnectionBuilder().withUrl("/chat").build();
+
+    connection.on("Send", function(message){
+        let messElem = document.createElement("p");
+        messElem.appendChild(document.createTextNode(message));
+        let firstElem = document.getElementById("chatroom").firstChild;
+        document.getElementById("chatroom").insertBefore(messElem, firstElem);
+    });
+
+    document.getElementById("sendBtn").addEventListener("click", function(ev){
+        let message = document.getElementById("message").value;
+        connection.invoke("Send", message);
+    });
+
+    connection.start();
+</script>
